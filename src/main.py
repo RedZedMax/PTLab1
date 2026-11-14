@@ -6,6 +6,7 @@ from src.TextDataReader import TextDataReader
 from src.XmlDataReader import XmlDataReader
 from src.QuartileAnalysis import QuartileAnalysis
 
+
 def get_path_from_arguments(args) -> str:
     parser = argparse.ArgumentParser(description="Path to datafile")
     parser.add_argument("-p", dest="path", type=str, required=True,
@@ -20,7 +21,7 @@ def main():
         reader = XmlDataReader()
     else:
         reader = TextDataReader()
-    students = reader.read(path)    
+    students = reader.read(path)
     analyzer = QuartileAnalyzer(students)
     q1_students = analyzer.get_first_quartile_students()
     print("Students in the first quartile:", q1_students)

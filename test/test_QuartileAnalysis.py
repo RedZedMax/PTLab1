@@ -3,6 +3,7 @@ import pytest
 from src.Types import DataType
 from src.QuartileAnalysis import QuartileAnalysis
 
+
 class TestQuartileAnalysis:
 
     @pytest.fixture()
