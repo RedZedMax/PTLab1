@@ -3,7 +3,8 @@ import argparse
 import sys
 from src.CalcRating import CalcRating
 from src.TextDataReader import TextDataReader
-
+from src.XmlDataReader import XmlDataReader
+from src.QuartileAnalysis import QuartileAnalysis
 
 def get_path_from_arguments(args) -> str:
     parser = argparse.ArgumentParser(description="Path to datafile")
@@ -15,11 +16,14 @@ def get_path_from_arguments(args) -> str:
 
 def main():
     path = get_path_from_arguments(sys.argv[1:])
-    reader = TextDataReader()
-    students = reader.read(path)
-    print("Students: ", students)
-    rating = CalcRating(students).calc()
-    print("Rating: ", rating)
+    if path.endswith(".xml"):
+        reader = XmlDataReader()
+    else:
+        reader = TextDataReader()
+    students = reader.read(path)    
+    analyzer = QuartileAnalyzer(students)
+    q1_students = analyzer.get_first_quartile_students()
+    print("Students in the first quartile:", q1_students)
 
 
 if __name__ == "__main__":
