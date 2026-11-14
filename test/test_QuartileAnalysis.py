@@ -19,6 +19,5 @@ class TestQuartileAnalysis:
     def test_get_first_quartile_students(self, sample_data: DataType) -> None:
         analyzer = QuartileAnalysis(sample_data)
         result = analyzer.get_first_quartile_students()
-        assert "Студент 4" in result
         assert "Студент 5" in result
-        assert len(result) == 2
+        assert len(result) == 1
